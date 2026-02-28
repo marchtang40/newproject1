@@ -165,7 +165,16 @@ function populateFromJson(list){
   // 初始化显示
   triggerText.textContent = hiddenInput.value;
 }
-function initDialCodes(){if(window.DIAL_CODES&&Array.isArray(window.DIAL_CODES)&&window.DIAL_CODES.length){populateFromJson(window.DIAL_CODES)}else{populateCountries()}}
+function initDialCodes(){
+  if(window.DIAL_CODES&&Array.isArray(window.DIAL_CODES)&&window.DIAL_CODES.length){
+    populateFromJson(window.DIAL_CODES)
+  }else{
+    // 如果没有 dial_codes.js 或加载失败，使用默认数据
+    const defaultCodes = [{"name": "中国", "en": "China", "code": "CN", "dial_code": "+86"}, {"name": "美国", "en": "United States", "code": "US", "dial_code": "+1"}];
+    populateFromJson(defaultCodes);
+    console.error('dial_codes.js not loaded, using fallback.');
+  }
+}
 
 initDialCodes()
 updateMode('phone')
