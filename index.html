@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>登录</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="container">
+    <section class="card" id="login-card">
+      <h1 class="title">登录</h1>
+      <div class="login-switch" role="tablist">
+        <button type="button" id="mode-phone" class="switch active" aria-selected="true">手机号</button>
+        <button type="button" id="mode-email" class="switch" aria-selected="false">邮箱</button>
+      </div>
+      <form id="login-form" novalidate>
+        <div class="field phone-field">
+          <label for="phone">手机号</label>
+          <div class="phone-row">
+            <div class="custom-select" id="custom-country-select">
+              <button type="button" class="select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                <span class="trigger-text">+86</span>
+                <span class="arrow">▼</span>
+              </button>
+              <div class="select-dropdown" role="listbox" hidden>
+                <div class="search-box">
+                  <input type="text" placeholder="搜索国家或区号..." class="search-input">
+                </div>
+                <div class="options-list"></div>
+              </div>
+              <input type="hidden" id="country-code" name="countryCode" value="+86">
+            </div>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="输入手机号" required>
+          </div>
+          <p class="error" data-for="phone"></p>
+        </div>
+        <div class="field email-field" hidden>
+          <label for="email">邮箱</label>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="username" placeholder="you@example.com">
+          <p class="error" data-for="email"></p>
+        </div>
+        <div class="field">
+          <label for="password">密码</label>
+          <div class="password-input">
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="至少 8 位字符" minlength="8" required>
+            <button type="button" id="toggle-password" aria-label="显示或隐藏密码">👁️</button>
+          </div>
+          <p class="error" data-for="password"></p>
+        </div>
+        <div class="actions">
+          <label class="remember">
+            <input type="checkbox" id="remember" name="remember">
+            记住我
+          </label>
+          <a href="#" class="link">忘记密码？</a>
+        </div>
+        <button class="submit" id="submit" type="submit" disabled>登录</button>
+      </form>
+      <p class="footer">
+        还没有账号？
+        <a href="#" class="link" id="go-to-register">去注册</a>
+      </p>
+    </section>
+
+    <!-- 注册卡片 -->
+    <section class="card" id="register-card" hidden>
+      <h1 class="title">注册账号</h1>
+      <form id="register-form" novalidate>
+        <div class="field">
+          <label for="reg-nickname">昵称</label>
+          <input id="reg-nickname" name="nickname" type="text" placeholder="设置你的昵称" required>
+          <p class="error" data-for="nickname"></p>
+        </div>
+        
+        <div class="field">
+          <label for="reg-email">邮箱</label>
+          <input id="reg-email" name="email" type="email" placeholder="you@example.com" required>
+          <p class="error" data-for="reg-email"></p>
+        </div>
+
+        <div class="field">
+          <label for="reg-code">邮箱验证码</label>
+          <div class="verify-row">
+            <input id="reg-code" name="code" type="text" placeholder="输入验证码" maxlength="6" required>
+            <button type="button" class="verify-btn" id="send-code-btn">获取验证码</button>
+          </div>
+          <p class="error" data-for="code"></p>
+        </div>
+
+        <div class="field">
+          <label for="reg-password">密码设置</label>
+          <div class="password-input">
+            <input id="reg-password" name="password" type="password" placeholder="至少 8 位字符" minlength="8" required>
+            <button type="button" class="toggle-password-btn" aria-label="显示或隐藏密码">👁️</button>
+          </div>
+          <p class="error" data-for="reg-password"></p>
+        </div>
+
+        <div class="field">
+          <label for="reg-repassword">重复输入密码</label>
+          <div class="password-input">
+            <input id="reg-repassword" name="repassword" type="password" placeholder="再次输入密码" minlength="8" required>
+            <button type="button" class="toggle-password-btn" aria-label="显示或隐藏密码">👁️</button>
+          </div>
+          <p class="error" data-for="repassword"></p>
+        </div>
+
+        <div class="terms-check">
+          <label>
+            <input type="checkbox" id="agree-terms" required>
+            <span>注册即代表同意<a href="#" class="link">服务条款</a></span>
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" id="cancel-register">取消</button>
+          <button type="submit" class="submit register-submit" id="register-submit" disabled>注册</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <button id="debug-users-btn" style="position:fixed;bottom:20px;left:20px;padding:8px 16px;border-radius:20px;border:1px solid rgba(255,255,255,0.2);background:rgba(0,0,0,0.5);color:#fff;font-size:12px;cursor:pointer;z-index:999;">查看注册记录</button>
+  <script src="./dial_codes.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
